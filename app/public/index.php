@@ -6,16 +6,30 @@ use Aws\Exception\AwsException;
 
 $onlyScanForToday = true;
 $showAll = false;
+$enableFetching = false;
 
-$client = new CodeBuildClient([
-    'version' => 'latest',
-    'region' => 'us-west-2',
-    'credentials' => [
-        'key' => 'ASIAZQ3DQD2TPPR6W6W4',
-        'secret' => '5KnD5WebaF00kS3CI0xHR42jPAqN8tdB+a8YsPNS',
-        'token' => 'IQoJb3JpZ2luX2VjENf//////////wEaCXVzLXdlc3QtMiJHMEUCICcZ7yU0CfhcBfuSpO3qbou59ASTi1BP9THDvrvu4ArdAiEAvwjifrV3oJJpqLO/U+/jYbBGszB9+35vpYDzo96ZoX8qtwMIQBAAGgw2NTQ2NTQzMTYxOTgiDPEoYltOSq1gVnP0UyqUA+87mXyd+ivAUGfaV6be6w/POQV+z+Euxk/QF/0AdMpreGFy3HBYROyuuPvaiNBUKfNMqXtmmNpW2HM61L0F9rWyz95ri0kOS9fT0sMbe/BfPyerCV602O9KQZacQB7qfm6gZ7wyO5yCoV2INQOOY7ju5tkJZijAQ10ueIj9plh7fj7RND1itGWkhctENWq1kVUsKLFixxFU+OapMBiHF7q+cH7j2VdwiQZT69uHTsoetyqdodUeBd5fdoDb71lSx8g6tKNJjO8dX6SDVtBsMPZ8Sdzbk+aFiOEn83kVwtrf8kylOLAxiWGjPohkIn0UcjNYVQAWmjhb1ED3Z+MC/EwZGTMnKmJubCXuxpSfgcWtC7P/2qtZwaCtN7ZcuKkR4RMj1QpuyozGwoF5DfcTEGOHyoz8SdLe6Sw7BWxPzrPj3/wvESppoMK0BDFDJ9hphZSXRttVz5Ld5j/GoCkeDJQPlpgqi1unkapqhqwRAPsieHufxvZiXD/v5d6MIkI4xIlCqpqeAAvnY9T1bFYbc5pEV2vxMMr+x7gGOqYB1BdxorV7MImlBBLeiKOdf4tfdjeHYhJSXxddFny17+2iu3CelBV57kHn0cy+KyZtGaXDf3STsRyxLaeIrfOf9JXI5E/XprqNAl0khJfdyNsIMW6sU1Xw4QCGShoTq4h+xOS+GGwyCD+1M89Jq41UtxB2aRFhwHm5nn1OXekhV5+tPI+iWL7xR1qmW9w+wI/qroRnjWhKaomeAHJdVtMf68CLxSId4A=='
-    ],
-]);
+$key = '';
+$secret = '';
+$token = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize and validate input data
+    $key = htmlspecialchars(trim($_POST["key"]));
+    $secret = htmlspecialchars(trim($_POST["secret"]));
+    $token = htmlspecialchars(trim($_POST["token"]));
+
+    // Basic validation
+    if (empty($key) || empty($secret) || empty($token)) {
+        echo "All fields are required.";
+        exit;
+    } 
+
+    $enableFetching = true;
+    
+} else {
+    // If the form wasn't submitted, redirect or show an error
+    echo "NO CREDENTIALS SUPPLEMENTED";
+}
 
 $reportGrpList = [
     'ccm-ss-portal-api-regression-tests',
@@ -40,6 +54,7 @@ $reportGrpList = [
     'ccm-advanced-cm-regression-tests-playwright',
     'ccm-portal-ui-smoke-tests-playwright'
 ];
+
 ?>
 
 <!DOCTYPE html>
@@ -52,112 +67,158 @@ $reportGrpList = [
 </head>
 
 <body>
-    <h4>Automation Report - <?php echo date('M d, Y'); ?></h4>
-    <table>
-        <thead>
-            <td>Name</td>
-            <td>Test<br/>Scenarios</td>
-            <td>Passed</td>
-            <td>Failed</td>
-            <td>Skipped</td>
-            <td>Blocker</td>
-            <td>Pass in<br/>Local Run</td>
-            <td>Bug<br/>Found</td>
-            <td>Auto Ticket<br/>for fixes</td>
-            <td>Assignee</td>
-            <td>Remarks</td>
-        </thead>
-        <tbody>
-            <?php
-                foreach ($reportGrpList as $reportGrp) {
-                    
-                    $reportGroupArn = 'arn:aws:codebuild:us-west-2:654654316198:report-group/' . $reportGrp . '-SurefireReports';
 
-                    try {
+    <div class="form-container">
+        <h4>AWS Credentials</h4>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="key">KEY</label>
+                <input type="text" id="key" name="key" required autocomplete="off" value="<?php echo $key; ?>">
+            </div>
+            <div class="form-group">
+                <label for="secret">SECRET</label>
+                <input type="text" id="secret" name="secret" required autocomplete="off" value="<?php echo $secret; ?>">
+            </div>
+            <div class="form-group">
+                <label for="token">TOKEN</label>
+                <input type="text" id="token" name="token" required autocomplete="off" value="<?php echo $token; ?>">
+            </div>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
 
-                        $result = $client->listReportsForReportGroup([
-                            'reportGroupArn' => $reportGroupArn,
-                            'sortBy' => 'CREATED_TIME',
-                            'maxResults' => 1,
-                        ]);
+    <div class="report-container">
+        <h4>Automation Report - <?php echo date('M d, Y'); ?></h4>
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>Test<br />Scenarios</td>
+                <td>Passed</td>
+                <td>Failed</td>
+                <td>Skipped</td>
+                <td>Blocker</td>
+                <td>Pass in<br />Local Run</td>
+                <td>Bug<br />Found</td>
+                <td>Auto Ticket<br />for fixes</td>
+                <td>Assignee</td>
+                <td>Remarks</td>
+            </thead>
+            <tbody>
+                <?php
+                if($enableFetching) {
 
-                        $reportArns = $result['reports'];
+                    $client = new CodeBuildClient([
+                        'version' => 'latest',
+                        'region' => 'us-west-2',
+                        'credentials' => [
+                            'key' => $key,
+                            'secret' => $secret,
+                            'token' => $token
+                        ],
+                    ]);
 
-                        foreach ($reportArns as $reportArn) {
 
-                            // Get details of each report
-                            $reportDetails = $client->batchGetReports([
-                                'reportArns' => [$reportArn],
+                    foreach ($reportGrpList as $reportGrp) {
+
+                        $reportGroupArn = 'arn:aws:codebuild:us-west-2:654654316198:report-group/' . $reportGrp . '-SurefireReports';
+        
+                        try {
+        
+                            $result = $client->listReportsForReportGroup([
+                                'reportGroupArn' => $reportGroupArn,
+                                'sortBy' => 'CREATED_TIME',
+                                'maxResults' => 1,
                             ]);
-
-                            foreach ($reportDetails['reports'] as $report) {
-                                $showAll = false;
-                                $created = date_format(date_create($report['created']), 'M d, Y H:i:s');
-
-                                if ($onlyScanForToday) {
-                                    if (date('Y-m-d', strtotime($report['created'])) == date('Y-m-d')) {
+        
+                            $reportArns = $result['reports'];
+        
+                            foreach ($reportArns as $reportArn) {
+        
+                                // Get details of each report
+                                $reportDetails = $client->batchGetReports([
+                                    'reportArns' => [$reportArn],
+                                ]);
+        
+                                foreach ($reportDetails['reports'] as $report) {
+                                    $showAll = false;
+                                    $created = date_format(date_create($report['created']), 'M d, Y H:i:s');
+        
+                                    if ($onlyScanForToday) {
+                                        if (date('Y-m-d', strtotime($report['created'])) == date('Y-m-d')) {
+                                            $showAll = true;
+                                        }
+                                    } else {
                                         $showAll = true;
                                     }
-                                } else {
-                                    $showAll = true;
-                                }
-
-                                if ($showAll) {
-                                    $reportArnName = explode("/", $report['arn'])[1];
-
-                                    $testSummary = $report['testSummary']['statusCounts'];
-                                    $succeeded = $testSummary['SUCCEEDED'];
-                                    $failed = $testSummary['FAILED'];
-                                    $skipped = $testSummary['SKIPPED'];
-                                    $totalTests  = $succeeded + $failed + $skipped;
-                                    $blocker = '';
-                                    $passedInLocalRun = '';
-                                    $bugFound = '';
-                                    $autoTicket = '';
-                                    $assignee = '';
-                                    $remarks = '';
-                                    echo '<tr>';
-                                    echo "<td><a href='https://us-west-2.console.aws.amazon.com/codesuite/codebuild/654654316198/projects/" . $reportGrp . "/history?region=us-west-2'>" . $reportGrp . "</a></td>"; // Name
-                                    echo "<td>" . $totalTests . "</td>"; // Test Scenarios
-                                    echo "<td><a target='_blank' href='https://us-west-2.console.aws.amazon.com/codesuite/codebuild/654654316198/testReports/reports/ccm-pr-roi-SurefireReports/" . $reportArnName . "?region=us-west-2'>" . $succeeded . "</a></td>"; // Passed
-                                    echo "<td>" . $failed . "</td>"; // Failed
-                                    echo "<td>" . $skipped . "</td>"; // Skipped
-                                    echo "<td>" . $blocker . "</td>"; // Blocker
-                                    echo "<td>" . $passedInLocalRun . "</td>"; // Passed in Local Run
-                                    echo "<td>" . $bugFound . "</td>"; // Bug Found
-                                    echo "<td>" . $autoTicket . "</td>"; // Bug Found
-                                    echo "<td>" . $assignee . "</td>"; // Bug Found
-                                    echo "<td>" . $remarks . "</td>"; // Bug Found 
-                                    echo '</tr>';
+        
+                                    if ($showAll) {
+                                        $reportArnName = explode("/", $report['arn'])[1];
+        
+                                        $testSummary = $report['testSummary']['statusCounts'];
+                                        $succeeded = $testSummary['SUCCEEDED'];
+                                        $failed = $testSummary['FAILED'];
+                                        $skipped = $testSummary['SKIPPED'];
+                                        $totalTests = $succeeded + $failed + $skipped;
+                                        $blocker = '';
+                                        $passedInLocalRun = '';
+                                        $bugFound = '';
+                                        $autoTicket = '';
+                                        $assignee = '';
+                                        $remarks = '';
+                                        echo '<tr>';
+                                        echo "<td><a href='https://us-west-2.console.aws.amazon.com/codesuite/codebuild/654654316198/projects/" . $reportGrp . "/history?region=us-west-2'>" . $reportGrp . "</a></td>"; // Name
+                                        echo "<td>" . $totalTests . "</td>"; // Test Scenarios
+                                        echo "<td><a target='_blank' href='https://us-west-2.console.aws.amazon.com/codesuite/codebuild/654654316198/testReports/reports/ccm-pr-roi-SurefireReports/" . $reportArnName . "?region=us-west-2'>" . $succeeded . "</a></td>"; // Passed
+                                        echo "<td>" . $failed . "</td>"; // Failed
+                                        echo "<td>" . $skipped . "</td>"; // Skipped
+                                        echo "<td>" . $blocker . "</td>"; // Blocker
+                                        echo "<td>" . $passedInLocalRun . "</td>"; // Passed in Local Run
+                                        echo "<td>" . $bugFound . "</td>"; // Bug Found
+                                        echo "<td>" . $autoTicket . "</td>"; // Bug Found
+                                        echo "<td>" . $assignee . "</td>"; // Bug Found
+                                        echo "<td>" . $remarks . "</td>"; // Bug Found 
+                                        echo '</tr>';
+                                    }
                                 }
                             }
+                        } catch (AwsException $e) {
+                            // Catch and display errors
+                            echo $e->getMessage();
+                            echo "<br/>";
                         }
-                    } catch (AwsException $e) {
-                        // Catch and display errors
-                        echo $e->getMessage();
-                        echo "<br/>";
                     }
                 }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 <style>
+    /* TABLE STYLES */
     body {
         font-family: Arial, Helvetica, sans-serif;
     }
 
+
+        /* FORM STYLES */
+    .report-container {
+        background: white;
+        padding: 20px;
+    }
     td:not(:first-child) {
         text-align: center;
     }
+
     table {
         border-collapse: collapse;
     }
+
     table td {
         padding: 15px;
         line-break: anywhere;
     }
+
     table thead td {
         background-color: #a4c2f4;
         color: #000000;
@@ -165,16 +226,71 @@ $reportGrpList = [
         font-size: 13px;
         border: 1px solid #000000;
     }
+
     table tbody td {
         color: #000000;
         font-size: 13px;
         border: 1px solid #000000;
     }
+
     table tbody tr {
         background-color: #f9fafb;
     }
+
     table tbody tr:nth-child(odd) {
         background-color: #ffffff;
+    }
+
+
+    /* FORM STYLES */
+    .form-container {
+        background: white;
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .form-group {
+        display: flex; /* Use flexbox for inline layout */
+        justify-content: space-between; /* Distribute space between items */
+        align-items: center; /* Align items vertically */
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-right: 10px; /* Space between label and input */
+        flex: 0 0 20%; /* Allow label to take up a fixed width */
+        font-size: 13px;
+    }
+
+    input[type="text"],
+    input[type="email"]{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    button {
+        width: 50%;
+        padding: 10px 5px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
     }
 </style>
 
