@@ -204,7 +204,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         font-family: Arial, Helvetica, sans-serif;
     }
 
-
     /* FORM STYLES */
     .report-container {
         background: white;

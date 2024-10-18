@@ -1,0 +1,83 @@
+## Why o why?
+
+It has come to my attention that day to day tasks of the Automation Team can be repetitive yet time consuming. For example, the simplest task that we do is to generate a daily report of Build runs that went thru the day. This can be quite time consuming as we have to check each build if there are have been recent runs.
+
+This and many more activities consume our time from executing our main tasks. The solution I can think of is quite simple but hard to execute: I will create a portal that will consolidate the activities that we normally do in AWS. Like generating daily reports, executing code builds for smoke and regression. What I want to achieve is for us to execute those tasks with a few clicks, and not having to click and type, and click and type....
+
+This is the initial prototype I am working on. Please follow the steps below
+
+### Steps to Install Docker on macOS:
+
+#### 1. **Download and Install Docker Desktop for Mac**
+
+- Go to the official Docker website.
+- Download the Docker Desktop for Mac version.
+- Once downloaded, open the `.dmg` file and follow the installation instructions to install Docker Desktop.
+- After installation, start Docker Desktop from your Applications folder.
+
+#### 2. **Verify Docker is Running**
+
+- After starting Docker Desktop, check if Docker is running by clicking the whale icon in your menu bar (top-right). It should show “Docker is running” if everything is working correctly.
+
+#### 3. **Check Docker Installation**
+
+- Open a terminal and check if Docker is installed and running by typing:
+    
+    `docker --version`
+    
+    This should return the installed version of Docker, for example:
+
+    `Docker version 20.10.8, build 3967b7d`
+    
+
+#### 4. **Add Docker to `PATH` (if needed)**
+
+If Docker is installed but you're still seeing the "command not found" error, the issue might be that Docker isn't properly added to your `PATH`. You can manually add Docker to your `PATH` by editing your shell configuration file (like `~/.bash_profile`, `~/.zshrc`, or `~/.bashrc` depending on your shell).
+
+Here's how to add it:
+
+1. Open your terminal and edit your shell configuration file. For example, if you're using Zsh (the default shell in macOS Catalina and later):
+       
+    `nano ~/.zshrc`
+    
+2. Add the following line to the end of the file:
+
+    `export PATH="/usr/local/bin:$PATH"`
+    
+3. Save and exit (press `CTRL + X` to save in `nano`, then press `Y` to confirm).
+    
+4. Apply the changes:
+    
+    `source ~/.zshrc`
+    
+
+#### 5. **Restart Terminal**
+
+- Close the terminal and reopen it. Then, try running the `docker` command again.
+
+#### 6. **Test Docker**
+
+Run a test command to verify Docker is working:
+
+`docker run hello-world`
+
+If Docker is working, you should see output that starts with:
+
+`Hello from Docker! This message shows that your installation appears to be working correctly.`
+
+### Additional Troubleshooting:
+
+- **Check Docker Desktop version**: If you're using an older version of Docker Desktop, updating it to the latest version might fix the issue.
+- **Check if Docker is running**: If Docker isn't running, you'll need to start Docker Desktop manually.
+
+By following these steps, you should be able to resolve the "docker: command not found" issue on macOS. Let me know if you need further assistance!
+
+
+### Running the container from the repository
+
+You simple have to go inside the repository and type:
+`docker compose run`
+
+You should see in the Docker Desktop that the container has run. If there are no errors
+go to your browser and search:
+`http://127.0.0.1`
