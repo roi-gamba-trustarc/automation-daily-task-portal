@@ -1,0 +1,213 @@
+{
+    "ccm-ss-portal-api-regression-tests": [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-565",
+            "assignee": "Charl",
+            "remarks":""
+        }
+    ],
+    "ccm-ss-portal-ui-regression-tests" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-702",
+                "CCM-2906"
+            ],
+            "autoticket": "CCMA-563",
+            "assignee": "Charl",
+            "remarks":""
+        }
+    ],
+    "ccm-ss-advanced-cm-only-regression-tests" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-1729",
+                "CCM-2464",
+                "CCM-2459"
+            ],
+            "autoticket": "CCMA-564",
+            "assignee": "Roi",
+            "remarks":"Fix is ongoing"
+        }
+    ],
+    "ccm-ss-standard-cm-only-regression-tests" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-1962",
+                "CCM-2516"
+            ],
+            "autoticket": "CCMA-566",
+            "assignee": "Roi",
+            "remarks":""
+        }
+    ],
+    "ccm-reporting-api" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-2020",
+                "CCM-2176",
+                "CCM-2884",
+                "CCM-2885"
+            ],
+            "autoticket": "CCMA-724",
+            "assignee": "Noeh",
+            "remarks":""
+        }
+    ],
+    "ccm-ss-portal-api-smoke-qa-tests" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-721",
+            "assignee": "Noeh",
+            "remarks":""
+        }
+    ],
+    "ccm-ss-portal-ui-smoke-qa-tests" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-657",
+            "assignee": "Noeh",
+            "remarks":"Need to update automation script for the changes in IAB GPP"
+        }
+    ],
+    "ccm-ss-advanced-cm-only-smoke-qa-tests" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-2459",
+                "CCM-2464"
+            ],
+            "autoticket": "CCMA-722",
+            "assignee": "Ruffa",
+            "remarks":"Under code review. Updated automation script for the changes in CCM-2765"
+        }
+    ],
+    "ccm-ss-standard-cm-only-smoke-qa-tests" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "Ruffa",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-two-step-optin-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "Noeh",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-cms-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "Ruffa",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-icon-server-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-723",
+            "assignee": "Ruffa",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-tdp-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-410",
+            "assignee": "Noeh",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-uat-parallel-tests" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-238"
+            ],
+            "autoticket": "CCMA-245",
+            "assignee": "Ruffa",
+            "remarks":"Test data fix and automation code change ongoing. Intermittent failures and test data issues."
+        }
+    ],
+    "ccm-legacy-autoblock-component" : [
+        {
+            "blocker":[],
+            "bugs": [
+                "CCM-2193"
+            ],
+            "autoticket": "CCMA-241",
+            "assignee": "Karen",
+            "remarks":"Test data issues. Investigation is ongoing"
+        }
+    ],
+    "ccm-legacy-widget-regression" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-387",
+            "assignee": "Ruffa",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-dnt-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "Karen",
+            "remarks":""
+        }
+    ],
+    "ccm-legacy-iab-component" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "Karen",
+            "remarks":""
+        }
+    ],
+    "ccm-portal-ui-regression-tests-playwright" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "CCMA-725",
+            "assignee": "Charl",
+            "remarks":""
+        }
+    ],
+    "ccm-advanced-cm-regression-tests-playwright" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "",
+            "remarks":""
+        }
+    ],
+    "ccm-portal-ui-smoke-tests-playwright" : [
+        {
+            "blocker":[],
+            "bugs": [],
+            "autoticket": "",
+            "assignee": "",
+            "remarks":""
+        }
+    ]
+}
