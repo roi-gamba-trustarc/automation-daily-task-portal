@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  webserver:
+    container_name: "automation-reporter"
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./app:/app
+  
+  php:
+    image: "php:8-fpm"  # Use a PHP image with FPM for web services
+    build: services/php
+    volumes:
+      - ./app:/app
+    working_dir: /app
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "trustarc"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  mysqldata: {}
