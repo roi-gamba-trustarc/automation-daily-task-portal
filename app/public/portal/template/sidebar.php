@@ -15,7 +15,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Daily Automation Report</span></a>
             </li>
