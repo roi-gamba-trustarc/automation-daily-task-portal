@@ -129,13 +129,13 @@ class APIClient {
                                 }
                             }
             
-                            $autoTicket = "<a href='" . $jiraLink . "browse/" . $reportGrp[0]['autoticket'] . "' >" . $reportGrp[0]['autoticket'] . "</a> ";
+                            $autoTicket = "<a target='_blank' href='" . $jiraLink . "browse/" . $reportGrp[0]['autoticket'] . "' >" . $reportGrp[0]['autoticket'] . "</a> ";
                             
                             $assignee = $reportGrp[0]['assignee'];
                             $remarks = $reportGrp[0]['remarks'];
             
                              $outputString .= "<tr>";
-                             $outputString .= "<td><a href='" . $awsLink . "codesuite/codebuild/" . $this->accountId . "/projects/" . $this->key . "/history?region=us-west-2'>" . $this->key . "</a></td>"; // Name
+                             $outputString .= "<td><a target='_blank' href='" . $awsLink . "codesuite/codebuild/" . $this->accountId . "/projects/" . $this->key . "/history?region=us-west-2'>" . $this->key . "</a></td>"; // Name
                              $outputString .= "<td>" . $totalTests . "</td>"; // Test Scenarios
                              $outputString .= "<td><a target='_blank' href='" . $awsLink . "codesuite/codebuild/" . $this->accountId . "/testReports/reports/ccm-pr-roi-SurefireReports/" . $reportArnName . "?region=us-west-2'>" . $succeeded . "</a></td>"; // Passed
                              $outputString .= "<td>" . $failed . "</td>"; // Failed
