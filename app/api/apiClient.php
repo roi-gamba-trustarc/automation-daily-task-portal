@@ -21,15 +21,33 @@ class APIClient {
     // Validation method
     private function validateCredentials(): void {
         if (empty($this->key) || empty($this->secret) || empty($this->token) || empty($this->accountId)) {
-            throw new InvalidArgumentException("All credentials must be provided and cannot be empty.");
+            echo '<div class="text-center">
+                <img class="img-fluid px-4 px-sm-4 mt-3 mb-4" style="width: 15rem;"
+                    src="img/undraw_warning.svg" alt="...">
+                    <p>All credentials must be provided and cannot be empty.</p>
+            </div>';
+        
+            throw new InvalidArgumentException();
         }
 
         if (!ctype_alnum($this->key)) {
-            throw new InvalidArgumentException("Key must be alphanumeric.");
+            echo '<div class="text-center">
+                <img class="img-fluid px-4 px-sm-4 mt-3 mb-4" style="width: 15rem;"
+                    src="img/undraw_warning.svg" alt="...">
+                    <p>Key must be alphanumeric.</p>
+            </div>';
+
+            throw new InvalidArgumentException();
         }
 
         if (!ctype_digit($this->accountId)) {
-            throw new InvalidArgumentException("Account ID must be a numeric string.");
+            echo '<div class="text-center">
+                <img class="img-fluid px-4 px-sm-4 mt-3 mb-4" style="width: 15rem;"
+                    src="img/undraw_warning.svg" alt="...">
+                    <p>Account ID must be a numeric string.</p>
+            </div>';
+
+            throw new InvalidArgumentException();
         }
     }
 
