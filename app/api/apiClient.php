@@ -20,6 +20,7 @@ class APIClient {
 
     // Validation method
     private function validateCredentials(): void {
+        // TODO: Enhance exception handling and reduce redundancies
         if (empty($this->key) || empty($this->secret) || empty($this->token) || empty($this->accountId)) {
             echo '<div class="text-center">
                 <img class="img-fluid px-4 px-sm-4 mt-3 mb-4" style="width: 15rem;"
@@ -52,6 +53,7 @@ class APIClient {
     }
 
     public function generateCodeBuildReport(): void  {
+        // TODO: Move static variables to an ini config file
         $failedStatus     = false;
         $onlyScanForToday = true;
         $jiraLink         = 'https://trustarc.atlassian.net/';
@@ -183,7 +185,7 @@ class APIClient {
             $errorMsg = $th->getMessage();
         }
 
-
+        // TODO: Enhance Exception handling
         if($failedStatus){
             echo '<div class="text-center">
                 <img class="img-fluid px-4 px-sm-4 mt-3 mb-4" style="width: 15rem;"
