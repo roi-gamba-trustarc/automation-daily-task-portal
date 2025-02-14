@@ -179,7 +179,12 @@ class APIClient {
              $outputString .= "  </table>
                 </div>";
     
-             $outputString .= " <button id='copyButton' class='btn btn-primary btn-user'>Copy Table</button>";
+             $outputString .= '<button type="submit" class="btn btn-primary btn-icon-split mt-2" id="copyButton">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-copy"></i>
+                                    </span>
+                                    <span class="text">Copy Table</span>
+                                </button>';
         } catch (\Throwable $th) {
             $failedStatus = true;
             $errorMsg = $th->getMessage();
