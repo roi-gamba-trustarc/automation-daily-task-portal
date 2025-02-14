@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
                     <p>This is where I'm modifying the details for static columns for now (Blocker, Pass in Local Run, Bug Found, Auto Ticket for fixes, Assignee, and Remarks).
-                        Coz I'm a lazy ass son of b***
+                        In order for the changes to reflect on other's local. Please push it to Github Repo.
                     </p>
                     
                     <?php
