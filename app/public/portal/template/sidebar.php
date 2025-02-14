@@ -15,9 +15,15 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Daily Automation Report</span></a>
+            </li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/portal/pipeline-editor">
+                    <i class="fas fa-fw fa-code"></i>
+                    <span>Pipeline Details Editor</span></a>
             </li>
 
             <!-- Divider -->
