@@ -37,7 +37,9 @@
                     <h6 class="m-0 font-weight-bold text-primary">JSON Editor</h6>
                 </div>
                 <div class="card-body">
-                    <p>This is where I'm modifying the details for static columns for now (Blocker, Pass in Local Run, Bug Found, Auto Ticket for fixes, Assignee, and Remarks)</p>
+                    <p>This is where I'm modifying the details for static columns for now (Blocker, Pass in Local Run, Bug Found, Auto Ticket for fixes, Assignee, and Remarks).
+                        Coz I'm a lazy ass son of b***
+                    </p>
                     
                     <?php
                         if($success):
