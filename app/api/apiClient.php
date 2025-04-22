@@ -56,6 +56,8 @@ class APIClient {
         // TODO: Move static variables to an ini config file
         $failedStatus     = false;
         $onlyScanForToday = true;
+        $targetDate       = date('Y-m-d');
+        // $targetDate       = date('Y-m-d', strtotime('-1 day'));
         $jiraLink         = 'https://trustarc.atlassian.net/';
         $awsLink          = 'https://us-west-2.console.aws.amazon.com/';
         $errorMsg         = '';
@@ -118,7 +120,7 @@ class APIClient {
                         $created = date_format(date_create($report['created']), 'M d, Y H:i:s');
             
                         if ($onlyScanForToday) {
-                            if (date('Y-m-d', strtotime($report['created'])) == date('Y-m-d')) {
+                            if (date('Y-m-d', strtotime($report['created'])) == $targetDate) {
                                 $showAll = true;
                             }
                         } else {
@@ -128,12 +130,12 @@ class APIClient {
                         if ($showAll) {
                             $reportArnName = explode("/", $report['arn'])[1];
             
-                            $testSummary = $report['testSummary']['statusCounts'];
-                            $succeeded = $testSummary['SUCCEEDED'];
-                            $failed = $testSummary['FAILED'];
-                            $skipped = $testSummary['SKIPPED'];
-                            $totalTests = $succeeded + $failed + $skipped;
-                            $blocker = '';
+                            $testSummary    = $report['testSummary']['statusCounts'];
+                            $succeeded      = $testSummary['SUCCEEDED'];
+                            $failed         = $testSummary['FAILED'];
+                            $skipped        = $testSummary['SKIPPED'];
+                            $totalTests     = $succeeded + $failed + $skipped;
+                            $blocker        = '';
                             $passedInLocalRun = '';
             
                             $bugs = '';

@@ -1,14 +1,14 @@
 {
-    "ccm-ss-portal-api-regression-tests": [
+    "ccm-auto-regression-api-oneccm-portal-multi-env-selenium": [
         {
             "blocker":[],
             "bugs": [],
             "autoticket": "CCMA-565",
-            "assignee": "Charl",
+            "assignee": "",
             "remarks":""
         }
     ],
-    "ccm-ss-portal-ui-regression-tests" : [
+    "ccm-auto-regression-ui-oneccm-portal-multi-env-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -16,11 +16,11 @@
                 "CCM-2906"
             ],
             "autoticket": "CCMA-563",
-            "assignee": "Charl",
+            "assignee": "",
             "remarks":""
         }
     ],
-    "ccm-ss-advanced-cm-only-regression-tests" : [
+    "ccm-auto-regression-ui-advanced-cm-multi-env-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -33,7 +33,7 @@
             "remarks":"Fix is ongoing"
         }
     ],
-    "ccm-ss-standard-cm-only-regression-tests" : [
+    "ccm-auto-regression-ui-standard-cm-multi-env-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -45,7 +45,7 @@
             "remarks":""
         }
     ],
-    "ccm-reporting-api" : [
+    "ccm-auto-regression-api-oneccm-reporting-multi-env-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -59,7 +59,7 @@
             "remarks":""
         }
     ],
-    "ccm-ss-portal-api-smoke-qa-tests" : [
+    "ccm-auto-smoke-api-oneccm-portal-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -68,7 +68,7 @@
             "remarks":""
         }
     ],
-    "ccm-ss-portal-ui-smoke-qa-tests" : [
+    "ccm-auto-smoke-ui-oneccm-portal-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -77,7 +77,7 @@
             "remarks":"Need to update automation script for the changes in IAB GPP"
         }
     ],
-    "ccm-ss-advanced-cm-only-smoke-qa-tests" : [
+    "ccm-auto-smoke-ui-advanced-cm-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -89,7 +89,7 @@
             "remarks":"Under code review. Updated automation script for the changes in CCM-2765"
         }
     ],
-    "ccm-ss-standard-cm-only-smoke-qa-tests" : [
+    "ccm-auto-smoke-ui-standard-cm-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -98,7 +98,7 @@
             "remarks":""
         }
     ],
-    "ccm-legacy-two-step-optin-component" : [
+    "ccm-auto-ccm-regression-ui-oneccm-two-step-opt-in-multi-env-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -116,7 +116,7 @@
             "remarks":""
         }
     ],
-    "ccm-legacy-icon-server-component" : [
+    "ccm-auto-regression-ui-icon-server-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -125,7 +125,7 @@
             "remarks":""
         }
     ],
-    "ccm-legacy-tdp-component" : [
+    "ccm-auto-regression-ui-tdp-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -145,7 +145,7 @@
             "remarks":"Test data fix and automation code change ongoing. Intermittent failures and test data issues."
         }
     ],
-    "ccm-legacy-autoblock-component" : [
+    "ccm-auto-regression-ui-autoblock-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [
@@ -156,7 +156,7 @@
             "remarks":"Test data issues. Investigation is ongoing"
         }
     ],
-    "ccm-legacy-widget-regression" : [
+    "ccm-auto-regression-ui-eu-oba-widgets-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -165,7 +165,7 @@
             "remarks":""
         }
     ],
-    "ccm-legacy-dnt-component" : [
+    "ccm-auto-regression-ui-dnt-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -174,7 +174,7 @@
             "remarks":""
         }
     ],
-    "ccm-legacy-iab-component" : [
+    "ccm-auto-regression-ui-iab-advanced-qa-selenium" : [
         {
             "blocker":[],
             "bugs": [],
@@ -183,16 +183,16 @@
             "remarks":""
         }
     ],
-    "ccm-portal-ui-regression-tests-playwright" : [
+    "ccm-auto-regression-ui-portal-multi-env-playwright" : [
         {
             "blocker":[],
             "bugs": [],
             "autoticket": "CCMA-725",
-            "assignee": "Charl",
+            "assignee": "",
             "remarks":""
         }
     ],
-    "ccm-advanced-cm-regression-tests-playwright" : [
+    "ccm-auto-regression-ui-advanced-cm-multi-env-playwright" : [
         {
             "blocker":[],
             "bugs": [],
@@ -201,7 +201,7 @@
             "remarks":""
         }
     ],
-    "ccm-portal-ui-smoke-tests-playwright" : [
+    "ccm-auto-smoke-ui-portal-multi-env-playwright" : [
         {
             "blocker":[],
             "bugs": [],
